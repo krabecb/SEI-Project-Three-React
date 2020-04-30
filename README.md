@@ -33,8 +33,13 @@
 ## User Story
 
 -User can register, log in, and log out.
+
 -User can view their profile page which contains all their information.
+
 -User can see all their clients and client sessions.
+
 -User can create, update, and remove clients.
+
 -User can create, update, and remove sessions.
+
 -User can navigate via header.
