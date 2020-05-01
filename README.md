@@ -18,6 +18,10 @@
 
 ![Imgur](https://i.imgur.com/XKw3Q3t.jpg)
 
+### Client Without Existing Sessions
+
+![Imgur](https://i.imgur.com/i4knGhz.jpg)
+
 ### Add/Edit Client
 
 ![Imgur](https://i.imgur.com/vQvMwzb.jpg)
