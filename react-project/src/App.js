@@ -17,7 +17,7 @@ export default class App extends Component {
 
   register = async (registerInfo) => {
     console.log("register() info in app.js:", registerInfo)
-    const url = process.env.REACT_APP_API_URL + "/api/users/register/"
+    const url = process.env.REACT_APP_API_URL + "/api/users/register"
 
     try {
       const registerResponse = await fetch(url, {
