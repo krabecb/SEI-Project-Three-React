@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Button, Label } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 import '../index.css'
 
 export default class LoginRegister extends Component {
@@ -17,7 +18,7 @@ export default class LoginRegister extends Component {
 
 	switch = () => {
 		if(this.state.action === "Login") {
-			this. setState({ action: "Register" })
+			this.setState({ action: "Register" })
 		} else {
 			this.setState({ action: "Login" })
 		}

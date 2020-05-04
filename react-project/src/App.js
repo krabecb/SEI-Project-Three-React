@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LoginRegister from './LoginRegister'
 import Navigation from './Navigation'
+import ClientContainer from './ClientContainer'
 
 export default class App extends Component {
 
@@ -99,7 +100,7 @@ export default class App extends Component {
           ?
           <React.Fragment>
             <Navigation email={this.state.loggedInUserEmail} logout={this.logout} />
-            <p>You are seeing this because you are logged in! Yay!</p>
+            <ClientContainer />
           </React.Fragment>
           :
           <LoginRegister login={this.login} register={this.register} />
