@@ -23,6 +23,7 @@ export default class EditClient extends Component {
 	}
 
 	handleSubmit = (event) => {
+		console.log(this.state)
 		event.preventDefault()
 		this.props.updateClient(this.state)
 	}

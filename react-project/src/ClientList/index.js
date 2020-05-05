@@ -7,7 +7,7 @@ export default function ClientList(props) {
 	console.log(props)
 	const clients = props.clients.map(client => {
 		return(
-			<Card key={client.id} color={"blue"}>
+			<Card key={client.id} color={"blue"} id="client-card">
 				<Card.Content textAlign={"center"}>
 					<Card.Header>
 						{client.first_name}
@@ -36,6 +36,20 @@ export default function ClientList(props) {
 						onClick={ () => props.editClient(client.id) }
 					>
 						Edit {client.first_name}
+					</Button>
+					<Button
+						basic
+						color='green'
+						onClick={ () => props.bookSession(client.id) }
+					>
+						Book Session
+					</Button>
+					<Button
+						basic
+						color='green'
+						onClick={ () => props.showSessions(client.id) }
+					>
+						View All Sessions
 					</Button>
 				</Card.Content> 
 			</Card>

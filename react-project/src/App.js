@@ -3,6 +3,7 @@ import './App.css';
 import LoginRegister from './LoginRegister'
 import Navigation from './Navigation'
 import ClientContainer from './ClientContainer'
+import SessionContainer from './SessionContainer'
 
 export default class App extends Component {
 

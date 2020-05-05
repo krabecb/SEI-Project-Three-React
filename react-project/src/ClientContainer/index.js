@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import ClientList from '../ClientList'
 import NewClient from '../NewClient'
 import EditClient from '../EditClient'
+import NewSession from '../NewSession'
+import SessionList from '../SessionList'
+import EditSession from '../EditSession'
 
 export default class ClientContainer extends Component {
 
@@ -9,15 +12,18 @@ export default class ClientContainer extends Component {
 		super(props)
 
 		this.state = {
+			sessions: [],
 			clients: [],
-			idOfClientToEdit: -1
+			idOfClientToEdit: -1,
+			idOfSessionToEdit: -1,
+			idOfClientToAdd: -1
 		}
 	}
 
 	componentDidMount() {
 		console.log("This is componentDidMount()")
 		this.getClients()
-		
+		this.getSessions()
 	}
 
 	getClients = async () => {
@@ -31,6 +37,20 @@ export default class ClientContainer extends Component {
 			})
 		} catch(error) {
 			console.error("There was a problem getting client data:", error)
+		}
+	}
+
+	getSessions = async () => {
+		try {
+			const url = process.env.REACT_APP_API_URL + "/api/sessions/"
+			const sessionsResponse = await fetch(url, { credentials: 'include'})
+			const sessionsJson = await sessionsResponse.json()
+
+			this.setState({
+				sessions: sessionsJson.data
+			})
+		} catch(error) {
+			console.error("There was a problem getting session data:", error)
 		}
 	}
 
@@ -57,6 +77,29 @@ export default class ClientContainer extends Component {
 		}
 	}
 
+	deleteSession = async (idOfSessionToDelete) => {
+		const url = process.env.REACT_APP_API_URL + "/api/sessions/" + idOfSessionToDelete
+
+		try {
+			const deleteSessionResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'DELETE'
+			})
+			console.log("deleteSessionResponse", deleteSessionResponse)
+			const deleteSessionJson = await deleteSessionResponse.json()
+			console.log("deleteSessionJson", deleteSessionJson)
+
+			if(deleteSessionResponse.status === 200) {
+				this.setState({
+					sessions: this.state.sessions.filter(session => session.id !== idOfSessionToDelete)
+				})
+			}
+		} catch(error) {
+			console.error("There was a problem deleting the session:")
+			console.error(error)
+		}
+	}
+
 	createClient = async (clientToAdd) => {
 		console.log("Here is the client you're trying to add:")
 		console.log(clientToAdd)
@@ -69,7 +112,7 @@ export default class ClientContainer extends Component {
 				body: JSON.stringify(clientToAdd),
 				headers: { 'Content-Type': 'application/json' }
 			})
-			console.log("CreateClientReponse", createClientResponse)
+			console.log("createClientReponse", createClientResponse)
 			const createClientJson = await createClientResponse.json()
 			console.log("Here's what happened after trying to add a client:")
 			console.log(createClientJson)
@@ -81,6 +124,43 @@ export default class ClientContainer extends Component {
 			}
 		} catch(error) {
 			console.error("There was a problem adding a client")
+			console.error(error)
+		}
+	}
+
+	bookSession = (idOfClientToAdd) => {
+		console.log("You are trying to add a session to a client with id:", idOfClientToAdd)
+
+		this.setState({
+			idOfClientToAdd: idOfClientToAdd
+		})
+	}
+
+	createSession = async (sessionToAdd) => {
+		console.log("Here is the session you're trying to add:")
+		console.log(sessionToAdd)
+
+		try {
+			const url = process.env.REACT_APP_API_URL + "/api/sessions/" +this.state.idOfClientToAdd
+			const createSessionResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'POST',
+				body:JSON.stringify(sessionToAdd),
+				headers: { 'Content-Type': 'application/json'}
+			})
+			console.log("createSessionResponse", createSessionResponse)
+			const createSessionJson = await createSessionResponse.json()
+			console.log("Here's what happened after trying to add a session:")
+			console.log(createSessionJson)
+
+			if(createSessionResponse.status === 201) {
+				this.setState({
+					sessions: [...this.state.sessions, createSessionJson.data],
+					idOfClientToAdd: -1
+				})
+			}
+		} catch(error) {
+			console.error("There was a problem adding a session")
 			console.error(error)
 		}
 	}
@@ -134,6 +214,63 @@ export default class ClientContainer extends Component {
 		})
 	}
 
+	editSession = (idOfSessionToEdit) => {
+		console.log("You are trying to edit a session with id:", idOfSessionToEdit)
+
+		this.setState({
+			idOfSessionToEdit: idOfSessionToEdit
+		})
+	}
+
+	updateSession = async (updatedSessionInfo) => {
+		const url = process.env.REACT_APP_API_URL + "/api/sessions/" + this.state.idOfSessionToEdit
+
+		try {
+			const updateSessionResponse = await fetch(url, {
+				credentials: 'include',
+				method: 'PUT',
+				body: JSON.stringify(updatedSessionInfo),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			})
+			console.log("updateSessionResponse", updateSessionResponse)
+			const updateSessionJson = await updateSessionResponse.json()
+			console.log("updateSessionJson", updateSessionJson)
+
+			console.log(updateSessionResponse.status)
+			console.log(updateSessionResponse.headers)
+
+			if(updateSessionResponse.status === 200) {
+				const sessions = this.state.sessions
+				const indexOfSessionBeingUpdated = sessions.findIndex(session => session.id === this.state.idOfSessionToEdit)
+				sessions[indexOfSessionBeingUpdated] = updateSessionJson.data
+
+				this.setState({
+					sessions: sessions,
+					idOfSessionToEdit: -1
+				})
+			}
+		} catch(error) {
+			console.error("There was a problem updating session info")
+			console.error(error)
+		}
+	}
+
+	closeEditSessionModal = () => {
+		console.log("Here is closeModal in SessionContainer")
+		this.setState({
+			idOfSessionToEdit: -1
+		})
+	}
+
+	closeBookSessionModal = () => {
+		console.log("Here is closeBookSessionModal in ClientContainer")
+		this.setState({
+			idOfClientToAdd: -1
+		})
+	}
+
 	render() {
 		console.log("Here is this.state in ClientContainer after getClients():")
 		console.log(this.state.clients[0])
@@ -142,12 +279,17 @@ export default class ClientContainer extends Component {
 				{ 
 					this.state.clients.length === 0 
 					?
-					<p>There are no clients yet.</p>
+					<React.Fragment>
+						<NewClient createClient={this.createClient} />
+						<p>There are no clients yet.</p>
+					</React.Fragment>
 					:
 					<React.Fragment>
 						<NewClient createClient={this.createClient} />
 						<h2>Clients</h2>
-						<ClientList clients={this.state.clients} deleteClient={this.deleteClient} editClient={this.editClient} />
+						<ClientList clients={this.state.clients} deleteClient={this.deleteClient} editClient={this.editClient} bookSession={this.bookSession}/>
+						<h2>Sessions</h2>
+						<SessionList sessions={this.state.sessions} deleteSession={this.deleteSession} editSession={this.editSession} />
 					</React.Fragment>
 				}
 				{
@@ -159,6 +301,21 @@ export default class ClientContainer extends Component {
 						updateClient={this.updateClient}
 						closeModal={this.closeModal}
 					/>
+				}
+				{
+					this.state.idOfSessionToEdit !== -1
+					&&
+					<EditSession
+						key={this.state.idOfSessionToEdit}
+						sessionToEdit={this.state.sessions.find((session) => session.id === this.state.idOfSessionToEdit)}
+						updateSession={this.updateSession}
+						closeEditSessionModal={this.closeEditSessionModal}
+					/>
+				}
+				{
+					this.state.idOfClientToAdd !== -1
+					&&
+					<NewSession createSession={this.createSession} closeBookSessionModal={this.closeBookSessionModal}/>
 				}
 			</React.Fragment>
 		)
