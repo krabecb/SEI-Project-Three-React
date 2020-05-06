@@ -47,7 +47,7 @@ export default function ClientList(props) {
 					<Button
 						basic
 						color='green'
-						onClick={ () => props.showSessions(client.id) }
+						onClick={ () => props.viewSessions(client.id) }
 					>
 						View All Sessions
 					</Button>

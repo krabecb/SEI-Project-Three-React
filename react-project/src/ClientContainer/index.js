@@ -16,6 +16,7 @@ export default class ClientContainer extends Component {
 			clients: [],
 			idOfClientToEdit: -1,
 			idOfSessionToEdit: -1,
+			idOfClientToViewSessions: -1,
 			idOfClientToAdd: -1
 		}
 	}
@@ -133,6 +134,14 @@ export default class ClientContainer extends Component {
 
 		this.setState({
 			idOfClientToAdd: idOfClientToAdd
+		})
+	}
+
+	viewSessions = (idOfClientToViewSessions) => {
+		console.log("You are trying to view sessions that belong to client id:", idOfClientToViewSessions)
+
+		this.setState({
+			idOfClientToViewSessions: idOfClientToViewSessions
 		})
 	}
 
@@ -271,6 +280,13 @@ export default class ClientContainer extends Component {
 		})
 	}
 
+	closeViewSessionsModal = () => {
+		console.log("Here is closeViewSessionsModal in ClientContainer")
+		this.setState({
+			idOfClientToViewSessions: -1
+		})
+	}
+
 	render() {
 		console.log("Here is this.state in ClientContainer after getClients():")
 		console.log(this.state.clients[0])
@@ -287,9 +303,7 @@ export default class ClientContainer extends Component {
 					<React.Fragment>
 						<NewClient createClient={this.createClient} />
 						<h2>Clients</h2>
-						<ClientList clients={this.state.clients} deleteClient={this.deleteClient} editClient={this.editClient} bookSession={this.bookSession}/>
-						<h2>Sessions</h2>
-						<SessionList sessions={this.state.sessions} deleteSession={this.deleteSession} editSession={this.editSession} />
+						<ClientList clients={this.state.clients} deleteClient={this.deleteClient} editClient={this.editClient} bookSession={this.bookSession} viewSessions={this.viewSessions} />
 					</React.Fragment>
 				}
 				{
@@ -316,6 +330,14 @@ export default class ClientContainer extends Component {
 					this.state.idOfClientToAdd !== -1
 					&&
 					<NewSession createSession={this.createSession} closeBookSessionModal={this.closeBookSessionModal}/>
+				}
+				{
+					this.state.idOfClientToViewSessions !== -1
+					&&
+					<React.Fragment>
+						<h2>Sessions</h2>
+						<SessionList sessions={this.state.sessions} deleteSession={this.deleteSession} editSession={this.editSession} closeViewSessionsModal={this.closeViewSessionsModal} idOfClientToViewSessions={this.state.idOfClientToViewSessions} />
+					</React.Fragment>
 				}
 			</React.Fragment>
 		)
