@@ -32,12 +32,12 @@ export default class EditSession extends Component {
 	render() {
 		return(
 			<Modal open={true} closeIcon={true} onClose={this.props.closeEditSessionModal}>
-				<Header>
+				<Header id="edit-session-header">
 					<h3>Edit session info</h3>
 				</Header>
-				<Modal.Content>
+				<Modal.Content id="modal-content-edit-session">
 					<Form onSubmit={this.handleSubmit}>
-						<Label>Title:</Label>
+						<Label id="edit-session-title">Title:</Label>
 							<Form.Input
 								type="text"
 								name="title"
@@ -45,7 +45,7 @@ export default class EditSession extends Component {
 								placeholder="Title"
 								onChange={this.handleChange}
 							/>
-							<Label>Date:</Label>
+							<Label id="edit-session-date">Date:</Label>
 							<Form.Input
 								type="date"
 								name="date"
@@ -53,14 +53,14 @@ export default class EditSession extends Component {
 								placeholder="Date"
 								onChange={this.handleChange}
 							/>
-							<Label>Time:</Label>
+							<Label id="edit-session-time">Time:</Label>
 							<Form.Input
 								type="text"
 								name="time"
 								value={this.state.time}
 								onChange={this.handleChange}
 							/>
-							<Label>Session Location:</Label>
+							<Label id="edit-session-location">Session Location:</Label>
 							<Form.Input
 								type="text"
 								name="location"
@@ -68,7 +68,7 @@ export default class EditSession extends Component {
 								placeholder="Enter session location"
 								onChange={this.handleChange}
 							/>
-							<Label>Comments:</Label>
+							<Label id="edit-session-comments">Comments:</Label>
 							<Form.Input
 								type="text"
 								name="comments"
@@ -77,7 +77,7 @@ export default class EditSession extends Component {
 								onChange={this.handleChange}
 							/>
 							<Modal.Actions>
-								<Button type="Submit">Update Session</Button>
+								<Button id="update-session-button" type="Submit">Update Session</Button>
 							</Modal.Actions>
 					</Form>
 				</Modal.Content>

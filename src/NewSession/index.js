@@ -37,10 +37,10 @@ export default class NewSession extends Component {
 	render() {
 		return(
 			<Modal open={true} closeIcon={true} onClose={this.props.closeBookSessionModal}>
-				<Modal.Content>
-					<h4>Create a new session:</h4>
+				<Modal.Content id="new-session-modal">
+					<h4 id="create-session-header">Create a new session:</h4>
 					<Form onSubmit={this.handleSubmit}>
-						<Label>Title:</Label>
+						<Label id="new-session-title">Title:</Label>
 						<Form.Input
 							type="text"
 							name="title"
@@ -48,7 +48,7 @@ export default class NewSession extends Component {
 							placeholder="Title"
 							onChange={this.handleChange}
 						/>
-						<Label>Date:</Label>
+						<Label id="new-session-date">Date:</Label>
 						<Form.Input
 							type="date"
 							name="date"
@@ -56,14 +56,14 @@ export default class NewSession extends Component {
 							placeholder="Date"
 							onChange={this.handleChange}
 						/>
-						<Label>Time:</Label>
+						<Label id="new-session-time">Time:</Label>
 						<Form.Input
 							type="text"
 							name="time"
 							value={this.state.time}
 							onChange={this.handleChange}
 						/>
-						<Label>Session Location:</Label>
+						<Label id="new-session-location">Session Location:</Label>
 						<Form.Input
 							type="text"
 							name="location"
@@ -71,7 +71,7 @@ export default class NewSession extends Component {
 							placeholder="Enter session location"
 							onChange={this.handleChange}
 						/>
-						<Label>Comments:</Label>
+						<Label id="new-session-comments">Comments:</Label>
 						<Form.Input
 							type="text"
 							name="comments"
@@ -79,7 +79,7 @@ export default class NewSession extends Component {
 							placeholder="Enter comments"
 							onChange={this.handleChange}
 						/>
-						<Button type="Submit">Add Session</Button>
+						<Button id="add-session-button" type="Submit">Add Session</Button>
 					</Form>
 				</Modal.Content>
 			</Modal>

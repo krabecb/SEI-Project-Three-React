@@ -27,7 +27,7 @@ export default function SessionList(props) {
 								{session.comments}
 							</Card.Meta>
 						</Card.Content>
-						<Card.Content textAlign={"center"}>
+						<Card.Content id="card-content-session-list" textAlign={"center"}>
 							<Button
 								basic
 								color='red'
@@ -37,7 +37,7 @@ export default function SessionList(props) {
 							</Button>
 							<Button
 								basic
-								color='green'
+								color='orange'
 								onClick={ () => props.editSession(session.id) }
 							>
 								Edit {session.title}
@@ -49,7 +49,7 @@ export default function SessionList(props) {
 
 	return(
 		<Modal open={true} closeIcon={true} onClose={props.closeViewSessionsModal}>
-			<Modal.Content>
+			<Modal.Content id="modal-content-session-list">
 				<Card.Group centered={true}>
 					{sessions}
 				</Card.Group>

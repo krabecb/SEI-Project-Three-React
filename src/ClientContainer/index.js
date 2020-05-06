@@ -302,7 +302,7 @@ export default class ClientContainer extends Component {
 					:
 					<React.Fragment>
 						<NewClient createClient={this.createClient} />
-						<h2>Clients</h2>
+						<h2 id="clients-h2">Clients</h2>
 						<ClientList clients={this.state.clients} deleteClient={this.deleteClient} editClient={this.editClient} bookSession={this.bookSession} viewSessions={this.viewSessions} />
 					</React.Fragment>
 				}

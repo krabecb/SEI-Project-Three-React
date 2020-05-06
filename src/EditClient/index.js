@@ -31,12 +31,12 @@ export default class EditClient extends Component {
 	render() {
 		return(
 			<Modal open={true} closeIcon={true} onClose={this.props.closeModal}>
-				<Header>
+				<Header id="edit-client-header">
 					<h3>Edit client info</h3>
 				</Header>
-				<Modal.Content>
+				<Modal.Content id="modal-content-edit">
 					<Form onSubmit={this.handleSubmit}>
-						<Label>First Name:</Label>
+						<Label id="edit-client-first">First Name:</Label>
 						<Form.Input
 							type="text"
 							name="first_name"
@@ -44,7 +44,7 @@ export default class EditClient extends Component {
 							placeholder="First name"
 							onChange={this.handleChange}
 						/>
-						<Label>Last Name:</Label>
+						<Label id="edit-client-last">Last Name:</Label>
 						<Form.Input
 							type="text"
 							name="last_name"
@@ -52,14 +52,14 @@ export default class EditClient extends Component {
 							placeholder="Last name"
 							onChange={this.handleChange}
 						/>
-						<Label>Date of Birth:</Label>
+						<Label id="edit-client-dob">Date of Birth:</Label>
 						<Form.Input
 							type="date"
 							name="date_of_birth"
 							value={this.state.date_of_birth}
 							onChange={this.handleChange}
 						/>
-						<Label>Client Location:</Label>
+						<Label id="edit-client-location">Client Location:</Label>
 						<Form.Input
 							type="text"
 							name="location"
@@ -68,7 +68,7 @@ export default class EditClient extends Component {
 							onChange={this.handleChange}
 						/>
 						<Modal.Actions>
-							<Button type="Submit">Update Client</Button>
+							<Button id="update-client-button" type="Submit">Update Client</Button>
 						</Modal.Actions>
 					</Form>
 				</Modal.Content>

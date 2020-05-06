@@ -34,10 +34,10 @@ export default class NewClient extends Component {
 
 	render() {
 		return(
-			<Segment>
+			<Segment id='new-client'>
 				<h4>Create a new client:</h4>
 				<Form onSubmit={this.handleSubmit}>
-					<Label>First Name:</Label>
+					<Label id="new-client-first">First Name:</Label>
 					<Form.Input
 						type="text"
 						name="first_name"
@@ -45,7 +45,7 @@ export default class NewClient extends Component {
 						placeholder="First name"
 						onChange={this.handleChange}
 					/>
-					<Label>Last Name:</Label>
+					<Label id="new-client-last">Last Name:</Label>
 					<Form.Input
 						type="text"
 						name="last_name"
@@ -53,14 +53,14 @@ export default class NewClient extends Component {
 						placeholder="Last name"
 						onChange={this.handleChange}
 					/>
-					<Label>Date of Birth:</Label>
+					<Label id="new-client-dob">Date of Birth:</Label>
 					<Form.Input
 						type="date"
 						name="date_of_birth"
 						value={this.state.date_of_birth}
 						onChange={this.handleChange}
 					/>
-					<Label>Client Location:</Label>
+					<Label id="new-client-location">Client Location:</Label>
 					<Form.Input
 						type="text"
 						name="location"
@@ -68,7 +68,7 @@ export default class NewClient extends Component {
 						placeholder="Enter client location"
 						onChange={this.handleChange}
 					/>
-					<Button type="Submit">Add Client</Button>
+					<Button id="add-client-button" type="Submit">Add Client</Button>
 				</Form>
 			</Segment>
 		)

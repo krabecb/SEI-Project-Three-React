@@ -1,8 +1,174 @@
 .App {
-  background-color: #EFEEEE;
+  background-color: #262122;
+  color: #EFEEEE;
 }
 
 #client-card {
-  box-shadow: -6px -6px 26px 0 rgba(255, 255, 255, 0.80);
-  box-shadow: 6px 6px 16px 0 rgba(217, 210, 200, 1);
+  background-color: #EFEEEE;
+/*  box-shadow: -6px -6px 26px 0 #4F5359;
+  box-shadow: 6px 6px 16px 0 #4F5359;*/
+}
+
+#email-label {
+  background-color: #F27F1B;
+}
+
+#password-label {
+  background-color: #F27F1B;
+}
+
+#username-label {
+  background-color: #F27F1B;
+}
+
+#login-signup-button {
+  background-color: #F27F1B;
+}
+
+#new-client {
+  background-color: #262122;
+}
+
+#new-client-first {
+  background-color: #F27F1B;
+}
+
+#new-client-last {
+  background-color: #F27F1B;
+}
+
+#new-client-dob {
+  background-color: #F27F1B;
+}
+
+#new-client-location {
+  background-color: #F27F1B;
+}
+
+#add-client-button {
+  background-color: #F27F1B;
+}
+
+#clients-h2 {
+  text-align: center;
+}
+
+#modal-content-edit {
+  background-color: #262122;
+}
+
+#edit-client-header {
+  background-color: #262122;
+  color: #EFEEEE;
+}
+
+#edit-client-first {
+  background-color: #F27F1B;
+}
+
+#edit-client-last {
+  background-color: #F27F1B;
+}
+
+#edit-client-dob {
+  background-color: #F27F1B;
+}
+
+#edit-client-location {
+  background-color: #F27F1B;
+}
+
+#update-client-button {
+  background-color: #F27F1B;
+}
+
+#new-session-modal {
+  background-color: #262122;
+}
+
+#create-session-header {
+  color: #EFEEEE;
+}
+
+#new-session-title {
+  background-color: #F27F1B;
+}
+
+#new-session-date {
+  background-color: #F27F1B;
+}
+
+#new-session-time {
+  background-color: #F27F1B;
+}
+
+#new-session-location {
+  background-color: #F27F1B;
+}
+
+#new-session-comments {
+  background-color: #F27F1B;
+}
+
+#add-session-button {
+  background-color: #F27F1B;
+}
+
+#modal-content-session-list {
+  background-color: #262122;
+}
+
+#card-content-client-list {
+  background-color: #262122;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+#card-content-session-list {
+  background-color: #262122;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+#modal-content-edit-session {
+  background-color: #262122;
+}
+
+#edit-session-header {
+  background-color: #262122;
+  color: white;
+}
+
+#edit-session-title {
+  background-color: #F27F1B;
+}
+
+#edit-session-date {
+  background-color: #F27F1B;
+}
+
+#edit-session-time {
+  background-color: #F27F1B;
+}
+
+#edit-session-location {
+  background-color: #F27F1B;
+}
+
+#edit-session-comments {
+  background-color: #F27F1B;
+}
+
+#update-session-button {
+  background-color: #F27F1B;
+}
+
+.here-link {
+  font-weight: bolder;
+}
+
+.logout-link {
+  font-weight: bolder;
 }

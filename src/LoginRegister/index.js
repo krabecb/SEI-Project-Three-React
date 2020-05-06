@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button, Label } from 'semantic-ui-react'
+import { Form, Button, Label, Grid, Message, Header, Icon } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import '../index.css'
 
@@ -44,55 +44,71 @@ export default class LoginRegister extends Component {
 
 	render() {
 		return(
-			<React.Fragment>
-			<h2>{this.state.action} here</h2>
-			<Form onSubmit={this.handleSubmit}>
-				{
-					this.state.action === "Register"
-					&&
+			<Grid textAlign='center' style={{ height: '105vh' }} verticalAlign='middle'>
+				<Grid.Column style={{ maxWidth: 476 }}>
 					<React.Fragment>
-						<Label>Username:</Label>
+					<Header as='h2' color='orange' textAlign='center'>
+						<Icon name='camera retro' /> Shootboard
+					</Header>
+					<Header as='h3' color='orange' textAlign='center'>
+						A Photographer's Companion
+					</Header>
+					<h2>{this.state.action} here</h2>
+					<Form onSubmit={this.handleSubmit}>
+						{
+							this.state.action === "Register"
+							&&
+							<React.Fragment>
+								<Label id="username-label">Username:</Label>
+								<Form.Input
+									icon='user'
+									iconPosition='left'
+									type="text"
+									name="username"
+									placeholder="Enter username"
+									value={this.state.username}
+									onChange={this.handleChange}
+								/>
+							</React.Fragment>
+						}
+						<Label id="email-label">Email:</Label>
 						<Form.Input
-							type="text"
-							name="username"
-							placeholder="Enter username"
-							value={this.state.username}
+							icon='mail'
+							iconPosition='left'
+							type="email"
+							name="email"
+							placeholder="Enter email"
+							value={this.state.email}
 							onChange={this.handleChange}
 						/>
+						<Label id="password-label">Password:</Label>
+						<Form.Input
+							icon='lock'
+							iconPosition='left'
+							type="password"
+							name="password"
+							placeholder="Enter password"
+							value={this.state.password}
+							onChange={this.handleChange}
+						/>
+						<Button id="login-signup-button" type="Submit" fluid size='large'>
+							{this.state.action === "Login" ? "Log in" : "Sign up"}
+						</Button>
+					</Form >
+					{
+						this.state.action === "Login"
+						?
+						<Message>
+							Need an account? Register <span className="here-link" onClick={this.switch}>here</span>
+						</Message>
+						:
+						<Message>
+							Already have an account? Log in <span className="here-link" onClick={this.switch}>here</span>
+						</Message>
+					}
 					</React.Fragment>
-				}
-				<Label>Email:</Label>
-				<Form.Input
-					type="email"
-					name="email"
-					placeholder="Enter email"
-					value={this.state.email}
-					onChange={this.handleChange}
-				/>
-				<Label>Password:</Label>
-				<Form.Input
-					type="password"
-					name="password"
-					placeholder="Enter password"
-					value={this.state.password}
-					onChange={this.handleChange}
-				/>
-				<Button type="Submit">
-					{this.state.action === "Login" ? "Log in" : "Sign up"}
-				</Button>
-			</Form>
-			{
-				this.state.action === "Login"
-				?
-				<p>
-					Register <span className="test-link" onClick={this.switch}>here</span>
-				</p>
-				:
-				<p>
-					Log in <span className="test-link" onClick={this.switch}>here</span>
-				</p>
-			}
-			</React.Fragment>
+				</Grid.Column>
+			</Grid>
 		)
 	}
 }
